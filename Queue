@@ -1,0 +1,83 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class InterviewSession {
+    Queue<String> mainHall = new LinkedList<>();
+    Queue<String> waitingRoom = new LinkedList<>();
+
+    void interview() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of candidates: ");    
+        int number= sc.nextInt();
+        sc.nextLine();
+        System.out.println("Enter the name of candidates : ");
+        for (int i = 0; i < number; i++) 
+        {
+            mainHall.add(sc.nextLine());
+        }
+    
+
+    
+        System.out.println("Enter the capacity of waiting room : ");
+        int candidatesWaiting = sc.nextInt();
+        for (int i = 0; i < candidatesWaiting; i++)
+         {
+            waitingRoom.add(mainHall.poll());
+        }
+        String  presentCandidate=null;
+        boolean isInCabin = false;
+        int i = 0;
+        while (i < number) {
+            System.out.println(
+                    "1.view \n 2.Candidate In\n 3.Candidate Out");
+            System.out.println("Enter your option:");
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("Candidates in the mainhall : \n" +mainHall);
+                    System.out.println("Candidates in waiting room : \n" +waitingRoom);
+                    System.out.println("Interview Room -> "+presentCandidate);
+                    break;
+
+                case 2:
+                    if (isInCabin == false) {
+                        isInCabin = true;
+                        presentCandidate = waitingRoom.remove();
+                        if(!mainHall.isEmpty())
+                        {
+                            waitingRoom.add(mainHall.remove());
+                        } else {
+                            System.out.println("mainhall is empty");
+                        }
+                        System.out.println( presentCandidate + " enters interview room");
+                    } else {
+                        System.out.println("Cabin is occupied");
+                    }
+                    break;
+
+                case 3:
+                    if (isInCabin == true) {
+                        isInCabin = false;
+                        System.out.println( presentCandidate + " leaves interview room");
+                        presentCandidate=null;
+                        i++;
+                    } else {
+                        System.out.println("Cabin is empty");
+                    }
+                    break;
+                
+                default:
+                    System.out.println("Invalid option");
+
+            }
+        }
+        System.out.println("Interview ends");
+        sc.close();
+    }
+    
+    public static void main(String[] args) {
+        InterviewSession interviewSession = new InterviewSession();
+        interviewSession.interview();
+    }
+}
