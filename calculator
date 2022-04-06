@@ -1,0 +1,48 @@
+import java.util.*;
+public class Calculator{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        double a,b,c=0.0;
+
+        System.out.print("Enter the first number\n");
+        a = sc.nextDouble();
+        System.out.print("Enter the second number\n");
+        b = sc.nextDouble();
+        System.out.println("Choose the operation "+"\n1.Addition"+"\n2.Subtraction"+"\n3.Multiplication"+"\n4.Division"+"\n5.Power");
+        System.out.println("Enter the number of operation : ");
+        double operation = sc.nextDouble();
+        double addition = 1;
+        double Subtraction = 2;
+        double multiplication = 3;
+        double division = 4;
+        double power = 5;
+        if(operation == addition){
+            c = a + b;
+            System.out.println(a + "+" + b + "=" + c);
+        }
+        else if(operation == Subtraction){
+            c = a - b;
+            System.out.println(a + "-" + b + "=" + c);
+        }
+        else if(operation == multiplication){
+            c = a * b;
+            System.out.println(a + "*" + b + "=" + c);
+        }
+        else if(operation == division){
+            c = a / b;
+            System.out.println(a + "/" + b + "=" + c);
+        }
+        else if(operation == power){
+           System.out.println("Enhance A or B ?"+ "\n1.A" + "\n.B");
+           double enhance = sc.nextDouble();
+           double first = 1;
+           double second = 2;
+           if(enhance == first){
+               System.out.println(Math.pow(a,2));
+           }
+           else if(enhance == second){
+               System.out.println(Math.pow(b,2));
+           }
+        }
+    }
+}
